@@ -36,6 +36,7 @@ pip3 install -r /opt/libvirttui/requirements.txt
     "description": "Sample description.",
     "cpu_count": 2,
     "memory": 4096,
+    "image_file": "fedora_template.qcow2",
     "template_file": "domain_linux.xml",
     "mounts": {
         "data": "/mnt/abc/<username_short>"
@@ -46,6 +47,7 @@ pip3 install -r /opt/libvirttui/requirements.txt
     "description": "Sample description.",
     "cpu_count": 2,
     "memory": 4096,
+    "image_file": "fedora_template.qcow2",
     "template_file": "domain_linux.xml",
     "mounts": {
         "data": "/mnt/abc/<username_long>"
