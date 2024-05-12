@@ -1,0 +1,110 @@
+Screen {
+    align: center middle;
+}
+
+#app {
+    layout: grid;
+    grid-size: 2 3;
+    grid-rows: 3 1fr 1;
+    grid-columns: 1fr 1fr;
+    width: 70;
+    max-height: 12;
+}
+
+#title-bar {
+    column-span: 2;
+    border: solid white;
+}
+
+#title {
+    text-align: center;
+}
+
+#images-list {
+    border: solid white;
+    scrollbar-size-vertical: 1;
+}
+
+#image-details {
+    border: solid white;
+    scrollbar-size-vertical: 1;
+}
+
+#image-details-title {
+    text-align: center;
+}
+
+.image-details-first-column {
+    width: 12;
+}
+
+#state-running {
+    color: rgb(0, 255, 0);
+}
+
+#additional_info {
+    column-span: 2;
+    text-align: right;
+}
+
+
+
+MessageScreen {
+    align: center middle;
+}
+
+#message-window-textonly {
+    grid-size: 1 1;
+    padding: 1 2;
+    width: 60;
+    height: auto;
+    border: double white;
+    background: $surface;
+}
+
+#message-window-ok {
+    grid-size: 3 2;
+    grid-gutter: 1 1;
+    grid-rows: 3 1;
+    padding: 0 1;
+    width: 60;
+    height: auto;
+    border: double white;
+    background: $surface;
+}
+
+#message-window-confirm {
+    grid-size: 5 2;
+    grid-gutter: 1 1;
+    grid-rows: 3 1;
+    padding: 0 1;
+    width: 60;
+    height: auto;
+    border: double white;
+    background: $surface;
+}
+
+#message-window-content {
+    column-span: 100;
+    width: 1fr;
+    height: auto;
+    content-align: center middle;
+}
+
+#button-ok {
+    width: 100%;
+    border: none;
+    height: 1;
+}
+
+#button-cancel {
+    width: 100%;
+    border: none;
+    height: 1;
+}
+
+#button-close {
+    width: 100%;
+    border: none;
+    height: 1;
+}

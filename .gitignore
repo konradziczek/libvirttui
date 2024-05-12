@@ -1,0 +1,5 @@
+start_virtiofsd
+virtiofsd
+venv
+assets/libvirttui.pp
+assets/libvirttui.mod

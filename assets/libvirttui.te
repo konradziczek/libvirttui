@@ -1,0 +1,10 @@
+module libvirttui 1.0;
+
+require {
+	type unconfined_t;
+	type svirt_t;
+	class unix_stream_socket connectto;
+}
+
+#============= svirt_t ==============
+allow svirt_t unconfined_t:unix_stream_socket connectto;
