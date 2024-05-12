@@ -317,7 +317,7 @@ class LibvirtTuiApp(App):
     def start_vm(self):
         image = self.images[self.current_image_key]
 
-        image_path = os.path.join(self.images_dir, f"{self.current_image_key}.qcow2")
+        image_path = os.path.join(self.images_dir, image['image_file'])
         vm_name = f"{self.current_image_key}_{self.user_id}"
         vm_path = os.path.join(self.vm_dir, f"{self.current_image_key}.qcow2")
 
