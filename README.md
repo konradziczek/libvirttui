@@ -4,7 +4,9 @@
 
 # Installation
 ```
-yum install g++ cargo libcap-ng-devel libseccomp-devel
+yum install git g++ cargo libcap-ng-devel libseccomp-devel
+
+git -C /opt clone https://github.com/konradziczek/libvirttui.git
 
 python3.11 -m venv /opt/libvirttui/venv
 
