@@ -1,3 +1,5 @@
+.idea
+.gitconfig
 start_virtiofsd
 virtiofsd
 venv
