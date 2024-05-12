@@ -1,3 +1,7 @@
+# App preview
+<img src="assets/app_preview.png" width="50%" height="50%">
+
+
 # Installation
 ```
 yum install g++ cargo libcap-ng-devel libseccomp-devel
@@ -10,6 +14,7 @@ pip3 install -r /opt/libvirttui/requirements.txt
 
 /opt/libvirttui/setup.sh
 ```
+
 
 # Updating
 ```
