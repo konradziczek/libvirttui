@@ -33,27 +33,22 @@ pip3 install -r /opt/libvirttui/requirements.txt
 
 ```
 {
-  "fedora_template": {
-    "name": "Fedora Template",
-    "description": "Sample description.",
-    "cpu_count": 2,
-    "memory": 4096,
-    "image_file": "fedora_template.qcow2",
-    "template_file": "domain_linux.xml",
-    "mounts": {
-        "data": "/mnt/abc/<username_short>"
-    }
-  },
-  "rocky_linux_template": {
-    "name": "Rocky Linux Template",
-    "description": "Sample description.",
-    "cpu_count": 2,
-    "memory": 4096,
-    "image_file": "fedora_template.qcow2",
-    "template_file": "domain_linux.xml",
-    "mounts": {
-        "data": "/mnt/abc/<username_long>"
-    }
-  }
+    "datetime": "2024-07-02 00:38:10",
+    "images": [
+        {
+            "id": "fedora_template",
+            "name": "Basic Fedora Linux System",
+            "description": "Root password is 'student'.",
+            "image_file": "fedora_template.qcow2",
+            "template_file": "domain_linux.xml",
+            "mounts": {
+                "vm": "\/vm\/<username_short>",
+                "data": "\/data\/<username_short>"
+            },
+            "updated": "2024-07-01 00:00:00",
+            "cpu_count": 2,
+            "memory": 4096
+        }
+    ]
 }
 ```
