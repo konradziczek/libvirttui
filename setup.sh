@@ -116,11 +116,18 @@ chown -R libvirttui:libvirttui /opt/libvirttui
 chown root:libvirttui /opt/libvirttui/start_virtiofsd
 chown libvirttui:qemu /opt/virt_data/vm
 
+if grep -q "^uftp:" /etc/passwd; then
+    chown -R root:uftp /opt/virt_data/images
+    chown root:uftp /opt/virt_data/images.json
+fi
+
 chmod 700 /opt/libvirttui
 chmod 4750 /opt/libvirttui/start_virtiofsd
-chmod -R 755 /opt/virt_data/images
+chmod -R 775 /opt/virt_data/images
+chmod 775 /opt/virt_data/images.json
 chmod 2770 /opt/virt_data/vm
 chmod 4755 /usr/local/bin/libvirttui
 chmod 755 /usr/local/bin/virtiofsd
+
 
 echo "OK"
