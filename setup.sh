@@ -106,6 +106,8 @@ mkdir -p /opt/virt_data/images
 mkdir -p /opt/virt_data/vm
 
 touch /opt/virt_data/images.json
+touch /opt/virt_data/get_images_list.py
+touch /opt/virt_data/get_images_list.log
 
 echo "OK"
 
@@ -115,10 +117,12 @@ echo -n "Running chmods and chowns... "
 chown -R libvirttui:libvirttui /opt/libvirttui
 chown root:libvirttui /opt/libvirttui/start_virtiofsd
 chown libvirttui:qemu /opt/virt_data/vm
+chown root:libvirttui /opt/virt_data/images.json
+chown root:libvirttui /opt/virt_data/get_images_list.py
+chown root:libvirttui /opt/virt_data/get_images_list.log
 
 if grep -q "^uftp:" /etc/passwd; then
     chown -R root:uftp /opt/virt_data/images
-    chown root:uftp /opt/virt_data/images.json
 fi
 
 chmod 700 /opt/libvirttui
@@ -129,5 +133,13 @@ chmod 2770 /opt/virt_data/vm
 chmod 4755 /usr/local/bin/libvirttui
 chmod 755 /usr/local/bin/virtiofsd
 
+echo "OK"
+
+
+echo -n "Setting up crontab... "
+
+if ! grep -q "get_images_list" /etc/crontab; then
+    echo '@reboot root /opt/virt_data/get_images_list.py > /dev/null' >> /etc/crontab
+fi
 
 echo "OK"
