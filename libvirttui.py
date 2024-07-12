@@ -232,8 +232,8 @@ class LibvirtTuiApp(App):
 
         suffix = f"_{self.user_id}"
         for domain in domains:
-            if domain.name().endswith(suffix):
-                domain_base_name = (domain.name())[:-len(suffix)]
+            if domain.name().startswith("libvirttui_") and domain.name().endswith(suffix):
+                domain_base_name = (domain.name())[11:-len(suffix)] # libvirttui_ has 11 characters
                 if domain_base_name in self.images:
                     info = domain.info()
                     self.images[domain_base_name]['state'] = info[0]
@@ -318,7 +318,7 @@ class LibvirtTuiApp(App):
         image = self.images[self.current_image_key]
 
         image_path = os.path.join(self.images_dir, image['image_file'])
-        vm_name = f"{self.current_image_key}_{self.user_id}"
+        vm_name = f"libvirttui_{self.current_image_key}_{self.user_id}"
         vm_path = os.path.join(self.vm_dir, f"{self.current_image_key}.qcow2")
 
         self.call_from_thread(self.push_screen, MessageScreen(MessageScreen.TYPE_TEXTONLY))
@@ -451,7 +451,7 @@ class LibvirtTuiApp(App):
 
         image = self.images[self.current_image_key]
 
-        vm_name = f"{self.current_image_key}_{self.user_id}"
+        vm_name = f"libvirttui_{self.current_image_key}_{self.user_id}"
 
         try:
             domain = self.libvirt_conn.lookupByName(vm_name)
