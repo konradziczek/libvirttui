@@ -139,7 +139,7 @@ echo "OK"
 echo -n "Setting up crontab... "
 
 if ! grep -q "get_images_list" /etc/crontab; then
-    echo '@reboot root /opt/virt_data/get_images_list.py > /dev/null' >> /etc/crontab
+    echo '@reboot libvirttui /opt/virt_data/get_images_list.py > /dev/null' >> /etc/crontab
 fi
 
 echo "OK"
