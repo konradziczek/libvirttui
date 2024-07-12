@@ -33,10 +33,9 @@ pip3 install -r /opt/libvirttui/requirements.txt
 
 ```
 {
-    "datetime": "2024-07-02 00:38:10",
-    "images": [
-        {
-            "id": "fedora_template",
+    "datetime": "2024-07-12 19:19:30",
+    "images": {
+        "fedora_template": {
             "name": "Basic Fedora Linux System",
             "description": "Root password is 'student'.",
             "image_file": "fedora_template.qcow2",
@@ -49,6 +48,6 @@ pip3 install -r /opt/libvirttui/requirements.txt
             "cpu_count": 2,
             "memory": 4096
         }
-    ]
+    }
 }
 ```
