@@ -129,6 +129,8 @@ chmod 700 /opt/libvirttui
 chmod 4750 /opt/libvirttui/start_virtiofsd
 chmod -R 775 /opt/virt_data/images
 chmod 775 /opt/virt_data/images.json
+chmod 775 /opt/virt_data/get_images_list.py
+chmod 775 /opt/virt_data/get_images_list.log
 chmod 2770 /opt/virt_data/vm
 chmod 4755 /usr/local/bin/libvirttui
 chmod 755 /usr/local/bin/virtiofsd
