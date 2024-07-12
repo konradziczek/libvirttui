@@ -598,7 +598,7 @@ if __name__ == "__main__":
 
     try:
         with open(os.path.join(VIRT_DATA_DIR_PATH, "images.json"), 'r') as file:
-            images = dict(json.load(file))
+            images = dict(json.load(file))['images']
     except FileNotFoundError:
         print(f"Error: File images.json not found.")
         exit(1)
