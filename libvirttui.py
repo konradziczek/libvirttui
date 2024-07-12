@@ -428,9 +428,17 @@ class LibvirtTuiApp(App):
 
         self.call_from_thread(self.screen.set_content, f"Virtual machine is being turned on...")
 
-        domain.create()
+        time.sleep(1)
 
-        time.sleep(5);
+        try:
+            domain.create()
+        except libvirt.libvirtError as e:
+            return self.thread_pop_screen_push_message_ok(
+                f"ERROR: An error occured while creating virtual machine " \
+                f"'{image['name']} ({self.current_image_key})': {e}"
+            )
+
+        time.sleep(5)
 
         state, reason = domain.state()
 
