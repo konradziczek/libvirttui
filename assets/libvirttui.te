@@ -2,6 +2,7 @@ module libvirttui 1.0;
 
 require {
 	type unconfined_t;
+	type user_tmp_t;
 	type svirt_t;
         class sock_file { unlink };
 	class unix_stream_socket connectto;
