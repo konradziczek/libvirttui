@@ -7,10 +7,6 @@
 #include <pwd.h>
 #include <grp.h>
 #include <sys/wait.h>
-#include <filesystem>
-
-
-namespace fs = std::filesystem;
 
 
 int main(int argc, char **argv)
@@ -40,13 +36,6 @@ int main(int argc, char **argv)
     if (setresuid(pwd_new->pw_uid, pwd_new->pw_uid, pwd_new->pw_uid) != 0) {
         fprintf(stderr, "Cannot set new uid.\n");
         exit(1);
-    }
-
-    std::string home_libvirttui_dir_path = "/tmp/libvirttui_" + std::to_string((unsigned int)pwd_new->pw_uid);
-
-    if (!fs::exists(home_libvirttui_dir_path)) {
-        fs::create_directory(home_libvirttui_dir_path);
-        fs::permissions(home_libvirttui_dir_path, fs::perms::owner_all | fs::perms::group_all, fs::perm_options::replace);
     }
 
     pid_t pid = fork();
