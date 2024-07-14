@@ -9,6 +9,7 @@ import subprocess
 import pwd
 import psutil
 import libvirt
+from shutil import rmtree
 from filelock import Timeout, FileLock
 from textual import work
 from textual.app import App, ComposeResult
@@ -620,6 +621,37 @@ if __name__ == "__main__":
     if not images:
         print("There are no virtual machine images available.")
         exit()
+
+    print("Deleting old images...\r", end="")
+
+    def libvirt_temp_callback(userdata, err):
+        pass
+
+    libvirt.registerErrorHandler(f=libvirt_temp_callback, ctx=None)
+
+    domains = libvirt_conn.listAllDomains(0)
+    suffix = f"_{user_id}"
+    for domain in domains:
+        if domain.name().startswith("libvirttui_") and not domain.name().endswith(suffix):
+            # print(domain.name())
+
+            try:
+                domain.destroy()
+            except libvirt.libvirtError:
+                pass
+
+            time.sleep(1)
+
+            for dir_name in os.listdir(os.path.join(VIRT_DATA_DIR_PATH, 'vm')):
+                if (os.path.isdir(os.path.join(VIRT_DATA_DIR_PATH, 'vm', dir_name))
+                    and str(user_id) != str(dir_name)
+                ):
+                    rmtree(os.path.join(VIRT_DATA_DIR_PATH, 'vm', dir_name))
+
+            domain.undefine()
+    print("                      ")
+
+    libvirt.registerErrorHandler(f=None, ctx=None)  # restore default handler
 
     app = LibvirtTuiApp(user_id, user_name, user_domain, user_home_dir_path, libvirt_conn, images)
     app.run()
