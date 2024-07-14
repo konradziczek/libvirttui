@@ -4,7 +4,7 @@
 
 # Installation
 ```
-yum install git g++ cargo libvirt-devel libcap-ng-devel libseccomp-devel
+yum install git g++ cargo libvirt-devel libcap-ng-devel libseccomp-devel libacl-devel
 
 git -C /opt clone https://github.com/konradziczek/libvirttui.git
 
