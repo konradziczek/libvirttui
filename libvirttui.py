@@ -5,6 +5,7 @@ import sys
 import time
 import json
 import re
+import getpass
 import subprocess
 import pwd
 import psutil
@@ -55,7 +56,7 @@ else:
 
 def debug_log(text: str):
     with open(os.path.join(SCRIPT_DIR_PATH, 'debug.log'), 'a') as log_file:
-        log_file.write(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {text}\n")
+        log_file.write(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}][{os.geteuid()}][{os.getegid()}] {text}\n")
 
 
 class MessageScreen(ModalScreen):
