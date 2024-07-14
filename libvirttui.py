@@ -428,10 +428,10 @@ class LibvirtTuiApp(App):
                               f"'{username_long}' '{self.user_home_dir_path}' " \
                               f"'{self.current_image_key}' '{k}' '{mount_path}'"
                     cmd = subprocess.run(
-                        debug_log(e.output)
                         command, check=True, text=True, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
                     )
                 except subprocess.CalledProcessError as e:
+                    debug_log(e.output)
                     return self.thread_pop_screen_push_message_ok((
                         f"ERROR: Cannot setup virtiofsd mount (name: {k}, code: {e.returncode})."
                     ))
