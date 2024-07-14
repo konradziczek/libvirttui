@@ -8,6 +8,7 @@
 .config
 .cargo
 libvirttui.lock
+remove_all_vms.log
 start_virtiofsd
 virtiofsd
 venv
