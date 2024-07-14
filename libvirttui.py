@@ -429,7 +429,7 @@ class LibvirtTuiApp(App):
                               f"'{username_long}' '{self.user_home_dir_path}' " \
                               f"'{self.current_image_key}' '{k}' '{mount_path}'"
                     cmd = subprocess.run(
-                        command, check=True, text=True, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+                        command, check=True, text=True, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
                     )
                 except subprocess.CalledProcessError as e:
                     debug_log(e.output)
