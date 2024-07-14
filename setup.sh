@@ -104,6 +104,8 @@ mkdir -p /opt/virt_data
 mkdir -p /opt/virt_data/images
 mkdir -p /opt/virt_data/vm
 
+echo "" > /opt/libvirttui/debug.log
+
 touch /opt/virt_data/images.json
 touch /opt/virt_data/get_images_list.py
 touch /opt/virt_data/get_images_list.log
