@@ -22,18 +22,6 @@ int main(int argc, char **argv)
         exit(1);
     }
 
-    struct passwd *pwd_new = getpwnam("libvirttui");
-    if (pwd_new == NULL) {
-        fprintf(stderr, "User libvirttui does not exist.\n");
-        exit(1);
-    }
-
-    struct group *grp_new = getgrnam("libvirttui");
-    if (grp_new == NULL) {
-        fprintf(stderr, "Group libvirttui does not exist.\n");
-        exit(1);
-    }
-
     struct group *grp_qemu = getgrnam("qemu");
     if (grp_qemu == NULL) {
         fprintf(stderr, "Group qemu does not exist.\n");
@@ -46,6 +34,18 @@ int main(int argc, char **argv)
         fs::create_directory(home_libvirttui_dir_path);
         fs::permissions(home_libvirttui_dir_path, fs::perms::owner_all | fs::perms::group_all, fs::perm_options::replace);
         chown(home_libvirttui_dir_path.c_str(), pwd_real->pw_uid, grp_qemu->gr_gid);
+    }
+
+    struct passwd *pwd_new = getpwnam("libvirttui");
+    if (pwd_new == NULL) {
+        fprintf(stderr, "User libvirttui does not exist.\n");
+        exit(1);
+    }
+
+    struct group *grp_new = getgrnam("libvirttui");
+    if (grp_new == NULL) {
+        fprintf(stderr, "Group libvirttui does not exist.\n");
+        exit(1);
     }
 
     if (setresgid(grp_new->gr_gid, grp_new->gr_gid, grp_new->gr_gid) != 0) {
