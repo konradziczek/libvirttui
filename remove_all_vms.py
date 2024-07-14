@@ -65,5 +65,4 @@ for dir_name in os.listdir('/tmp'):
 
 print("Done.\n")
 
-
 libvirt.registerErrorHandler(f=None, ctx=None)  # restore default handler
