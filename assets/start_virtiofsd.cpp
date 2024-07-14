@@ -29,12 +29,12 @@ int main(int argc, char **argv)
     }
 
     if (setresgid(grp_new->gr_gid, grp_new->gr_gid, grp_new->gr_gid) != 0) {
-        fprintf(stderr, "Cannot set new gid.\n");
+        fprintf(stderr, "Cannot change gid.\n");
         exit(1);
     }
 
     if (setresuid(pwd_new->pw_uid, pwd_new->pw_uid, pwd_new->pw_uid) != 0) {
-        fprintf(stderr, "Cannot set new uid.\n");
+        fprintf(stderr, "Cannot change uid (current uid: %d, effective uid: %d)\n", getuid(), geteuid());
         exit(1);
     }
 
