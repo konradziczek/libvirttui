@@ -149,7 +149,7 @@ if ! grep -q "remove_all_vms" /etc/crontab; then
 fi
 
 if ! grep -q "rm -r -f /tmp/libvirttui_*" /etc/crontab; then
-    echo '@reboot root rm -r -f /tmp/libvirttui_* > /dev/null' >> /etc/crontab
+    echo '@reboot root sleep 10; rm -r -f /tmp/libvirttui_* > /dev/null' >> /etc/crontab
 fi
 
 if ! grep -q "get_images_list" /etc/crontab; then
