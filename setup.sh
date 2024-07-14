@@ -140,16 +140,12 @@ echo "OK"
 
 echo -n "Setting up crontab... "
 
+if ! grep -q "remove_all_vms" /etc/crontab; then
+    echo '@reboot libvirttui /opt/libvirttui/remove_all_vms.py > /dev/null' >> /etc/crontab
+fi
+
 if ! grep -q "get_images_list" /etc/crontab; then
     echo '@reboot libvirttui /opt/virt_data/get_images_list.py > /dev/null' >> /etc/crontab
-fi
-
-if ! grep -q "rm -r -f /opt/virt_data/vm/*" /etc/crontab; then
-    echo '@reboot root rm -r -f /opt/virt_data/vm/* > /dev/null' >> /etc/crontab
-fi
-
-if ! grep -q "rm -r -f /tmp/libvirttui_*" /etc/crontab; then
-    echo '@reboot root rm -r -f /tmp/libvirttui_* > /dev/null' >> /etc/crontab
 fi
 
 echo "OK"
