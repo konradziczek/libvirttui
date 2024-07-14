@@ -7,6 +7,7 @@
 #include <pwd.h>
 #include <grp.h>
 #include <filesystem>
+#include <acl/libacl.h>
 
 
 namespace fs = std::filesystem;
@@ -34,11 +35,18 @@ int main(int argc, char **argv)
         exit(1);
     }
 
+    struct group *grp_qemu = getgrnam("qemu");
+    if (grp_qemu == NULL) {
+        fprintf(stderr, "Group qemu does not exist.\n");
+        exit(1);
+    }
+
     std::string home_libvirttui_dir_path = "/tmp/libvirttui_" + std::to_string((unsigned int)pwd_real->pw_uid);
 
     if (!fs::exists(home_libvirttui_dir_path)) {
         fs::create_directory(home_libvirttui_dir_path);
         fs::permissions(home_libvirttui_dir_path, fs::perms::owner_all | fs::perms::group_all, fs::perm_options::replace);
+        chown(home_libvirttui_dir_path.c_str(), pwd_real->pw_uid, grp_qemu->gr_gid);
     }
 
     if (setresgid(grp_new->gr_gid, grp_new->gr_gid, grp_new->gr_gid) != 0) {
