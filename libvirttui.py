@@ -415,6 +415,9 @@ class LibvirtTuiApp(App):
                 mount_path = v
                 mount_path = mount_path.replace('<username_short>', self.user_name)
                 mount_path = mount_path.replace('<username_long>', username_long)
+
+                os.listdir(mount_path)  # autoload directory from NFS
+                
                 try:
                     command = f"{os.path.join(SCRIPT_DIR_PATH, 'start_virtiofsd')} " \
                               f"'{username_long}' '{self.user_home_dir_path}' " \
