@@ -34,7 +34,7 @@ int main(int argc, char **argv)
     }
 
     if (setresuid(pwd_new->pw_uid, pwd_new->pw_uid, pwd_new->pw_uid) != 0) {
-        fprintf(stderr, "Cannot change uid (current uid: %d, effective uid: %d)\n", getuid(), geteuid());
+        fprintf(stderr, "Cannot change uid (current uid: %d, effective uid: %d).\n", getuid(), geteuid());
         exit(1);
     }
 
