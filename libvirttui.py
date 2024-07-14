@@ -282,6 +282,7 @@ class LibvirtTuiApp(App):
         if image_key:
             if self.images[image_key]['state'] == libvirt.VIR_DOMAIN_RUNNING:
                 self.bind(keys="s", action="stop_vm", description="Stop VM")
+                self.bind(keys="v", action="view_vm", description="View screen")
             else:
                 self.bind(keys="s", action="start_vm", description="Start VM")
 
