@@ -322,6 +322,10 @@ class LibvirtTuiApp(App):
         self.stop_vm()
 
 
+    def action_view_vm(self):
+        self.view_vm()
+
+
     @work(exclusive=True, thread=True)
     def start_vm(self):
         image = self.images[self.current_image_key]
@@ -507,6 +511,11 @@ class LibvirtTuiApp(App):
             return self.thread_pop_screen_push_message_ok(
                 f"ERROR: Virtual machine '{image['name']} ({self.current_image_key})' cannot be turned off."
             )
+
+    @work(exclusive=True, thread=True)
+    def view_vm(self):
+        # subprocess.Popen(['python', 'aplikacja_okienkowa.py'])
+        pass
 
 
     def thread_pop_screen_push_message_ok(self, content) -> None:
