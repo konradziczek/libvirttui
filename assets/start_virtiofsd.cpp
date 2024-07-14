@@ -16,6 +16,11 @@ int main(int argc, char **argv)
         exit(1);
     }
 
+    uid_t uid = getuid();
+    uid_t euid = geteuid();
+    uid_t gid = getgid();
+    uid_t egid = getegid();
+
     struct passwd *pwd_new = getpwnam(std::string(argv[1]).c_str());
     if (pwd_new == NULL) {
         fprintf(stderr, "User %s does not exist.\n", argv[1]);
@@ -29,12 +34,12 @@ int main(int argc, char **argv)
     }
 
     if (setresgid(grp_new->gr_gid, grp_new->gr_gid, grp_new->gr_gid) != 0) {
-        fprintf(stderr, "Cannot change gid (current uid: %d, effective uid: %d, current gid: %d, effective gid: %d).\n", getuid(), geteuid(), getgid(), getegid());
+        fprintf(stderr, "Cannot change gid (started this program as uid: %d, effective uid: %d, gid: %d, effective gid: %d).\n", uid, euid, gid, egid);
         exit(1);
     }
 
     if (setresuid(pwd_new->pw_uid, pwd_new->pw_uid, pwd_new->pw_uid) != 0) {
-        fprintf(stderr, "Cannot change uid (current uid: %d, effective uid: %d, current gid: %d, effective gid: %d).\n", getuid(), geteuid(), getgid(), getegid());
+        fprintf(stderr, "Cannot change uid (started this program as uid: %d, effective uid: %d, gid: %d, effective gid: %d).\n", uid, euid, gid, egid);
         exit(1);
     }
 
