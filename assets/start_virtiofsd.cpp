@@ -38,6 +38,8 @@ int main(int argc, char **argv)
         exit(1);
     }
 
+    std::string home_libvirttui_dir_path = "/tmp/libvirttui_" + std::to_string((unsigned int)pwd_new->pw_uid);
+
     pid_t pid = fork();
 
     if (pid == -1) {
