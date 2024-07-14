@@ -1,5 +1,7 @@
 /* g++ libvirttui.cpp -o libvirttui */
 
+#include <iostream>
+#include <fcntl.h>
 #include <unistd.h>
 #include <sstream>
 #include <pwd.h>
