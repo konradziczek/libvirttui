@@ -55,7 +55,7 @@ for domain in domains:
 
 print("Done.\n")
 
-        
+
 print("Deleting temporary data...")
 
 for dir_name in os.listdir('/tmp'):
@@ -66,3 +66,4 @@ for dir_name in os.listdir('/tmp'):
 print("Done.\n")
 
 libvirt.registerErrorHandler(f=None, ctx=None)  # restore default handler
+
