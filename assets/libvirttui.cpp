@@ -32,6 +32,13 @@ int main(int argc, char **argv)
         exit(1);
     }
 
+    std::string home_libvirttui_dir_path = "/tmp/libvirttui_" + std::to_string((unsigned int)pwd_real->pw_uid);
+
+    if (!fs::exists(home_libvirttui_dir_path)) {
+        fs::create_directory(home_libvirttui_dir_path);
+        fs::permissions(home_libvirttui_dir_path, fs::perms::owner_all | fs::perms::group_all, fs::perm_options::replace);
+    }
+
     if (setresgid(grp_new->gr_gid, grp_new->gr_gid, grp_new->gr_gid) != 0) {
         fprintf(stderr, "Cannot set new gid.\n");
         exit(1);
