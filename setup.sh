@@ -41,11 +41,6 @@ if ! rpm -q "libseccomp-devel" &>/dev/null; then
     exit 1
 fi
 
-if ! rpm -q "libacl-devel" &>/dev/null; then
-    echo "ERROR: Package libacl-devel is not installed."
-    exit 1
-fi
-
 if [ ! -d "/opt/libvirttui/venv" ]; then
     echo "ERROR: Python virtual environment is not installed in /opt/libvirttui/venv."
     exit 1
