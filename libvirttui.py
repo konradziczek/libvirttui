@@ -52,6 +52,11 @@ else:
     DOMAIN_STATES[libvirt.VIR_DOMAIN_NOTEXIST] = "VM not exist"
 
 
+def debug_log(text: str):
+    with open(os.path.join(SCRIPT_DIR_PATH, 'debug.log'), 'a') as log_file:
+        log_file.write(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {text}\n")
+
+
 class MessageScreen(ModalScreen):
     TYPE_TEXTONLY = 1
     TYPE_OK = 2
@@ -416,13 +421,14 @@ class LibvirtTuiApp(App):
                 mount_path = mount_path.replace('<username_short>', self.user_name)
                 mount_path = mount_path.replace('<username_long>', username_long)
 
-                os.stat(mount_path)  # automount directory from NFS
+                os.path.isfile(mount_path)  # automount directory from NFS
                 
                 try:
                     command = f"{os.path.join(SCRIPT_DIR_PATH, 'start_virtiofsd')} " \
                               f"'{username_long}' '{self.user_home_dir_path}' " \
                               f"'{self.current_image_key}' '{k}' '{mount_path}'"
                     cmd = subprocess.run(
+                        debug_log(e.output)
                         command, check=True, text=True, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
                     )
                 except subprocess.CalledProcessError as e:
