@@ -71,6 +71,7 @@ echo -n "Source code compilation... "
 
 g++ /opt/libvirttui/assets/start_virtiofsd.cpp -o /opt/libvirttui/start_virtiofsd
 g++ /opt/libvirttui/assets/libvirttui.cpp -o /usr/local/bin/libvirttui
+g++ /opt/libvirttui/assets/fix_vnc.cpp -o /opt/libvirttui/fix_vnc
 
 echo "OK"
 
@@ -117,6 +118,7 @@ echo -n "Running chmods and chowns... "
 
 chown -R libvirttui:libvirttui /opt/libvirttui
 chown root:libvirttui /opt/libvirttui/start_virtiofsd
+chown root:libvirttui /opt/libvirttui/fix_vnc
 chown libvirttui:qemu /opt/virt_data/vm
 chown root:libvirttui /opt/virt_data/images.json
 chown root:libvirttui /opt/virt_data/get_images_list.py
@@ -128,6 +130,7 @@ fi
 
 chmod 700 /opt/libvirttui
 chmod 4750 /opt/libvirttui/start_virtiofsd
+chmod 4750 /opt/libvirttui/fix_vnc
 chmod -R 775 /opt/virt_data/images
 chmod 775 /opt/virt_data/images.json
 chmod 775 /opt/virt_data/get_images_list.py
