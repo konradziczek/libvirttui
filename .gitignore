@@ -13,6 +13,7 @@ remove_all_vms.log
 start_virtiofsd
 virtiofsd
 fix_vnc
+show_vnc
 venv
 assets/libvirttui.pp
 assets/libvirttui.mod
