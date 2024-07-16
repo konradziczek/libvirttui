@@ -15,16 +15,21 @@ int main(int argc, char **argv)
         exit(1);
     }
 
+    if (std::string(argv[2]).find('/') != std::string::npos || std::string(argv[2]).find("..") != std::string::npos) {
+        fprintf(stderr, "ERROR: Incorrect vm name.");
+        exit(1);
+    }
+
     struct passwd *pwd_new = getpwnam(std::string(argv[1]).c_str());
     if (pwd_new == NULL) {
-        fprintf(stderr, "User %s does not exist.\n", argv[1]);
-        exit(1);
+        fprintf(stderr, "ERROR: User %s does not exist.\n", argv[1]);
+        exit(2);
     }
 
     struct group *grp_new = getgrnam("qemu");
     if (grp_new == NULL) {
-        fprintf(stderr, "Group %s does not exist.\n", argv[1]);
-        exit(1);
+        fprintf(stderr, "ERROR: Group qemu does not exist.\n");
+        exit(3);
     }
 
     std::string home_libvirttui_dir_path = "/tmp/libvirttui_" + std::to_string((unsigned int)pwd_new->pw_uid) + "/vm__" + std::string(argv[2]) + ".vnc.sock";
