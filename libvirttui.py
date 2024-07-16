@@ -515,6 +515,7 @@ class LibvirtTuiApp(App):
 
     @work(exclusive=True, thread=True)
     def view_vm(self):
+        username_long = f"{self.user_name}@{self.user_domain}" if self.user_domain else self.user_name
         subprocess.Popen(['/opt/libvirttui/fix_vnc', username_long, self.current_image_key])
         subprocess.Popen(['/opt/libvirttui/show_vnc', username_long, self.current_image_key])
 
