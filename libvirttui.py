@@ -512,10 +512,11 @@ class LibvirtTuiApp(App):
                 f"ERROR: Virtual machine '{image['name']} ({self.current_image_key})' cannot be turned off."
             )
 
+
     @work(exclusive=True, thread=True)
     def view_vm(self):
-        # subprocess.Popen(['python', 'aplikacja_okienkowa.py'])
-        pass
+        subprocess.Popen(['/opt/libvirttui/fix_vnc', self.user_id, self.current_image_key])
+        subprocess.Popen(['/opt/libvirttui/show_vnc', self.user_id, self.current_image_key])
 
 
     def thread_pop_screen_push_message_ok(self, content) -> None:
