@@ -32,11 +32,11 @@ int main(int argc, char **argv)
         exit(3);
     }
 
-    std::string home_libvirttui_dir_path = "/tmp/libvirttui_" + std::to_string((unsigned int)pwd_new->pw_uid) + "/vm__" + std::string(argv[2]) + ".vnc.sock";
+    std::string vnc_socket_path = "/tmp/libvirttui_" + std::to_string((unsigned int)pwd_new->pw_uid) + "/vm__" + std::string(argv[2]) + ".vnc.sock";
 
-    printf(("Fixing " + home_libvirttui_dir_path + "...\n").c_str());
+    printf(("Fixing " + vnc_socket_path + "...\n").c_str());
 
-    chown(home_libvirttui_dir_path.c_str(), pwd_new->pw_uid, grp_new->gr_gid);
+    chown(vnc_socket_path.c_str(), pwd_new->pw_uid, grp_new->gr_gid);
 
     printf("Done.\n");
 }
