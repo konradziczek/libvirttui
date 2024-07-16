@@ -515,8 +515,8 @@ class LibvirtTuiApp(App):
 
     @work(exclusive=True, thread=True)
     def view_vm(self):
-        subprocess.Popen(['/opt/libvirttui/fix_vnc', self.user_id, self.current_image_key])
-        subprocess.Popen(['/opt/libvirttui/show_vnc', self.user_id, self.current_image_key])
+        subprocess.Popen(['/opt/libvirttui/fix_vnc', username_long, self.current_image_key])
+        subprocess.Popen(['/opt/libvirttui/show_vnc', username_long, self.current_image_key])
 
 
     def thread_pop_screen_push_message_ok(self, content) -> None:
