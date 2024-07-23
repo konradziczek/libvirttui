@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [ $EUID -ne 0 ]; then
     echo "ERROR: Script must be run as root."
     exit 1
