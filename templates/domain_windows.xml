@@ -80,7 +80,9 @@
     <audio id='1' type='none'/>
 
     <video>
-      <model type='vga' vram='16384' heads='1' primary='yes'/>
+      <model type='virtio' heads='1' primary='yes'>
+        <acceleration accel3d='no'/>
+      </model>
     </video>
 
     <watchdog model='itco' action='reset'/>
