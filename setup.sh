@@ -134,7 +134,9 @@ chown root:libvirttui /opt/virt_data/get_images_list.py
 chown root:libvirttui /opt/virt_data/get_images_list.log
 
 if grep -q "^uftp:" /etc/passwd; then
-    chown -R root:uftp /opt/virt_data/images
+    chown -R uftp:libvirttui /opt/virt_data/images
+else
+    chown -R root:libvirttui /opt/virt_data/images
 fi
 
 chmod 700 /opt/libvirttui
