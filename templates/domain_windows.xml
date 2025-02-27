@@ -43,9 +43,9 @@
     <emulator>/usr/libexec/qemu-kvm</emulator>
 
     <disk type='file' device='disk'>
-      <driver name='qemu' type='qcow2' discard='unmap'/>
+      <driver name='qemu' type='qcow2'/>
       <source file='$TEMPLATE_VM_PATH$'/>
-      <target dev='vda' bus='virtio'/>
+      <target dev='sda' bus='sata'/>
     </disk>
 
     <controller type='pci' index='0' model='pcie-root'/>
