@@ -1,4 +1,5 @@
 #!/bin/bash
+
 cat << EOF
   <sysinfo type="smbios">
     <bios>
