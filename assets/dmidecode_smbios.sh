@@ -6,7 +6,7 @@ cat << EOF
       <entry name="vendor">$(dmidecode -s bios-vendor)</entry>
       <entry name="version">$(dmidecode -s bios-version)</entry>
       <entry name="date">$(dmidecode -s bios-release-date)</entry>
-      <entry name="release">$(dmidecode -s bios-version)</entry>
+      <entry name="release">$(dmidecode -s bios-revision)</entry>
     </bios>
     <system>
       <entry name="manufacturer">$(dmidecode -s system-manufacturer)</entry>
