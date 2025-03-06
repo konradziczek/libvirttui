@@ -4,7 +4,7 @@ cat << EOF
   <sysinfo type="smbios">
     <bios>
       <entry name="vendor">$(dmidecode -s bios-vendor)</entry>
-      <entry name="version">$(dmidecode -s bios-vendor)</entry>
+      <entry name="version">$(dmidecode -s bios-version)</entry>
       <entry name="date">$(dmidecode -s bios-release-date)</entry>
       <entry name="release">$(dmidecode -s bios-version)</entry>
     </bios>
@@ -24,5 +24,11 @@ cat << EOF
       <entry name="serial">$(dmidecode -s baseboard-serial-number)</entry>
       <entry name="asset">$(dmidecode -s baseboard-asset-tag)</entry>
     </baseBoard>
+    <chassis>
+      <entry name='manufacturer'>$(dmidecode -s chassis-manufacturer)</entry>
+      <entry name='version'>$(dmidecode -s chassis-version)</entry>
+      <entry name='serial'>$(dmidecode -s chassis-serial-number)</entry>
+      <entry name='asset'>$(dmidecode -s chassis-asset-tag)</entry>
+    </chassis>
   </sysinfo>
 EOF
