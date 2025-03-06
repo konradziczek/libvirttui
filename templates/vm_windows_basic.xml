@@ -1,5 +1,6 @@
 <domain type='kvm'>
   <name>$TEMPLATE_VM_NAME$</name>
+  <uuid>1b01438c-fab4-11ef-9cd2-0242ac120002</uuid>
   <metadata>
     <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0">
       <libosinfo:os id="http://microsoft.com/win/10"/>
@@ -14,8 +15,40 @@
   <vcpu placement='static'>$TEMPLATE_VM_CPU_COUNT$</vcpu>
   <os>
     <type arch='x86_64' machine='q35'>hvm</type>
+    <smbios mode='sysinfo'/>
     <boot dev='hd'/>
   </os>
+  <sysinfo type='smbios'>
+    <bios>
+      <entry name='vendor'>American Megatrends International, LLC.</entry>
+      <entry name='version'>7.04.SP02</entry>
+      <entry name='date'>04/26/2024</entry>
+      <entry name='release'>5.27</entry>
+    </bios>
+    <system>
+      <entry name='manufacturer'>libvirttui</entry>
+      <entry name='product'>libvirttui</entry>
+      <entry name='version'>To Be Filled By O.E.M.</entry>
+      <entry name='serial'>CZRAGHIII0108</entry>
+      <entry name='uuid'>1b01438c-fab4-11ef-9cd2-0242ac120002</entry>
+      <entry name='sku'>To Be Filled By O.E.M.</entry>
+      <entry name='family'>To Be Filled By O.E.M.</entry>
+    </system>
+    <baseBoard>
+      <entry name='manufacturer'>ASRock</entry>
+      <entry name='product'>B760 Pro RS</entry>
+      <entry name='version'>1.0</entry>
+      <entry name='serial'>M80-HA025300264</entry>
+      <entry name='asset'>To be filled by O.E.M.</entry>
+    </baseBoard>
+    <chassis>
+      <entry name='manufacturer'>To Be Filled By O.E.M.</entry>
+      <entry name='version'>To Be Filled By O.E.M.</entry>
+      <entry name='serial'>To Be Filled By O.E.M.</entry>
+      <entry name='asset'>To Be Filled By O.E.M.</entry>
+      <entry name='sku'>To Be Filled By O.E.M.</entry>
+    </chassis>
+  </sysinfo>
   <features>
     <acpi/>
     <apic/>
