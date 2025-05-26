@@ -9,6 +9,7 @@
 .config
 .cargo
 debug.log
+gpu.json
 libvirttui.lock
 remove_all_vms.log
 start_virtiofsd
