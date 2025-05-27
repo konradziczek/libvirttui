@@ -185,6 +185,13 @@ class ImageDetails(Container):
                     classes="details-row"
                 )
             )
+            self.mount(
+                Horizontal (
+                    Static("GPU:", classes="image-details-first-column"),
+                    Static(f"yes" if image['gpu'] else "no"),
+                    classes="details-row"
+                )
+            )
 
             self.mount(Static(f"------------------------"))
 
@@ -219,6 +226,7 @@ class LibvirtTuiApp(App):
 
         self.cpu_usage = 0
         self.memory_usage = 0
+        self.gpu_used = False
 
         for k, v in self.images.items():
             self.images[k]['state'] = libvirt.VIR_DOMAIN_NOTEXIST
@@ -255,6 +263,7 @@ class LibvirtTuiApp(App):
         images_list = []
         self.cpu_usage = 0
         self.memory_usage = 0
+        self.gpu_used = False
         for key, image in self.images.items():
             if image['state'] == libvirt.VIR_DOMAIN_RUNNING:
                 images_list.append(ImageListItem(key, Label(f":green_circle: {image['name']}")))
@@ -264,10 +273,13 @@ class LibvirtTuiApp(App):
             if image['state'] != libvirt.VIR_DOMAIN_NOTEXIST and image['state'] != libvirt.VIR_DOMAIN_SHUTOFF:
                 self.cpu_usage = self.cpu_usage + image['cpu_count']
                 self.memory_usage = self.memory_usage + image['memory']
+                if image['gpu']:
+                    self.gpu_used = True
 
         self.additional_info.update(
             f"VM vCPUs usage: {self.cpu_usage} / {self.cpu_count} " \
             f"| VM RAM usage: {self.memory_usage} / {self.memory} MB"
+            f"| GPU: {'used' if self.gpu_used else 'not used'}"
         )
 
         list_view.extend(images_list)
@@ -397,12 +409,32 @@ class LibvirtTuiApp(App):
 
             vnc_socket = f"/tmp/libvirttui_{self.user_id}/vm__{self.current_image_key}.vnc.sock"
 
+            vm_pci = ""
+
+            if image['gpu']:
+                if os.path.exists(os.path.join(SCRIPT_DIR_PATH, 'gpu.json')):
+                    with open(os.path.join(SCRIPT_DIR_PATH, 'gpu.json'), 'r') as f:
+                        gpu_list = json.load(f)
+
+                    for gpu in gpu_list:
+                        vm_pci = f"""{vm_pci}
+                            <hostdev mode='subsystem' type='pci' managed='yes'>
+                                <driver name='vfio'/>
+                                <source>
+                                    <address domain='{gpu['domain']}' bus='{gpu['bus']}' slot='{gpu['slot']}' function='{gpu['function']}'/>
+                                </source>
+                            </hostdev>
+                        """
+                else:
+                    debug_log('GPU should be attached but there is no gpu.json file.')
+
             xmldesc = xmldesc.replace('$TEMPLATE_VM_NAME$', vm_name)
             xmldesc = xmldesc.replace('$TEMPLATE_VM_PATH$', vm_path)
             xmldesc = xmldesc.replace('$TEMPLATE_VM_CPU_COUNT$', str(image['cpu_count']))
             xmldesc = xmldesc.replace('$TEMPLATE_VM_MEMORY$', str(image['memory']))
             xmldesc = xmldesc.replace('$TEMPLATE_VM_MOUNTS$', vm_mounts)
             xmldesc = xmldesc.replace('$TEMPLATE_VM_VNC_SOCKET$', vnc_socket)
+            xmldesc = xmldesc.replace('$TEMPLATE_VM_PCI$', vm_pci)
             xmldesc = xmldesc.replace('$TEMPLATE_USER_NAME$', self.user_name)
 
             time.sleep(2);

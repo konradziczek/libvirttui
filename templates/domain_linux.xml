@@ -81,6 +81,8 @@
       </model>
     </video>
 
+    $TEMPLATE_VM_PCI$
+
     <watchdog model='itco' action='reset'/>
 
     <memballoon model='virtio'/>
