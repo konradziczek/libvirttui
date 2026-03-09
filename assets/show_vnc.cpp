@@ -49,7 +49,7 @@ int main(int argc, char **argv)
 
     std::string vnc_socket_path = "/tmp/libvirttui_" + std::to_string((unsigned int)pwd_new->pw_uid) + "/vm__" + std::string(argv[2]) + ".vnc.sock";
 
-    if (execl("/var/lib/snapd/snap/bin/tigervnc", "/var/lib/snapd/snap/bin/tigervnc", vnc_socket_path.c_str(), (char*) NULL) == -1) {
+    if (execl("/usr/bin/virt-viewer", "/usr/bin/virt-viewer", vnc_socket_path.c_str(), (char*) NULL) == -1) {
         fprintf(stderr, "Execl error (vncviewer).\n");
         exit(1);
     }
