@@ -1,5 +1,5 @@
 filelock==3.13.1
-libvirt-python==10.1.0
+libvirt-python==12.1.0
 linkify-it-py==2.0.3
 markdown-it-py==3.0.0
 mdit-py-plugins==0.4.0
