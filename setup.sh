@@ -48,7 +48,7 @@ if ! rpm -q "tigervnc" &>/dev/null; then
     exit 1
 fi
 
-if ! rpm -q tigervnc &>/dev/null && [ ! -x /var/lib/snapd/snap/bin/tigervnc ]; then
+if ! rpm -q tigervnc &>/dev/null && [ ! -e /var/lib/snapd/snap/bin/tigervnc ]; then
     echo "ERROR: Package tigervnc is not installed."
     exit 1
 fi
