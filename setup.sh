@@ -115,6 +115,8 @@ touch /opt/virt_data/images.json
 touch /opt/virt_data/get_images_list.py
 touch /opt/virt_data/get_images_list.log
 
+/usr/bin/cp /opt/libvirttui/assets/vncviewer /usr/local/bin/vncviewer
+
 echo "OK"
 
 
@@ -128,6 +130,7 @@ chown libvirttui:qemu /opt/virt_data/vm
 chown root:libvirttui /opt/virt_data/images.json
 chown root:libvirttui /opt/virt_data/get_images_list.py
 chown root:libvirttui /opt/virt_data/get_images_list.log
+chown root:root /usr/local/bin/vncviewer
 
 if grep -q "^uftp:" /etc/passwd; then
     chown uftp:libvirttui /opt/virt_data/images
@@ -146,6 +149,7 @@ chmod 770 /opt/virt_data/get_images_list.log
 chmod 2770 /opt/virt_data/vm
 chmod 4755 /usr/local/bin/libvirttui
 chmod 755 /usr/local/bin/virtiofsd
+chmod 755 /usr/local/bin/vncviewer
 
 echo "OK"
 
