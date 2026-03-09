@@ -43,11 +43,6 @@ if ! rpm -q "libseccomp-devel" &>/dev/null; then
     exit 1
 fi
 
-if ! rpm -q "tigervnc" &>/dev/null; then
-    echo "ERROR: Package tigervnc is not installed."
-    exit 1
-fi
-
 if ! rpm -q tigervnc &>/dev/null && ! snap list tigervnc &>/dev/null; then
     echo "ERROR: Package tigervnc is not installed."
     exit 1
