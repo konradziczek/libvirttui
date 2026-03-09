@@ -46,10 +46,6 @@ fi
 if [ ! -x /usr/bin/vncviewer ] && [ ! -x /var/lib/snapd/snap/bin/tigervnc ]; then
     echo "ERROR: tigervnc is not installed."
     exit 1
-elif [ ! -x /usr/bin/vncviewer ]; then
-    echo -n "Creating link /usr/bin/vncviewer -> /var/lib/snapd/snap/bin/tigervnc... "
-    ln -s /var/lib/snapd/snap/bin/tigervnc /usr/bin/vncviewer
-    echo "OK"
 fi
 
 if [ ! -d "/opt/libvirttui/venv" ]; then
