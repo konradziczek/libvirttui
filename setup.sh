@@ -14,8 +14,8 @@ if [[ ! "$0" == "/opt/libvirttui/setup.sh" ]]; then
 fi
 
 
-if ! grep -q "Rocky Linux 9" /etc/os-release; then
-    echo "ERROR: This software runs only on Rocky Linux 9."
+if ! grep -q "Rocky Linux 10" /etc/os-release; then
+    echo "ERROR: This software runs only on Rocky Linux 10."
     exit 1
 fi
 
