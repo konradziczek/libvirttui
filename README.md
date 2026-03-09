@@ -4,7 +4,9 @@
 
 # Installation
 ```
-yum install git g++ cargo libvirt-devel libcap-ng-devel libseccomp-devel tigervnc python3-libvirt
+yum install git g++ cargo libvirt-devel libcap-ng-devel libseccomp-devel python3-libvirt
+
+snap install tigervnc
 
 git -C /opt clone https://github.com/konradziczek/libvirttui.git
 
