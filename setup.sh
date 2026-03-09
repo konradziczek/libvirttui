@@ -103,6 +103,7 @@ if ! which virtiofsd &>/dev/null; then
         echo "ERROR: Cannot build virtiofsd."
         exit 1
     fi
+    rm -f /usr/local/bin/virtiofsd
     cp /opt/libvirttui/virtiofsd/release/virtiofsd /usr/local/bin/
     echo "OK"
 fi
