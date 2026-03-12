@@ -1,9 +1,9 @@
 [Desktop Entry]
 Name=VM Manager
 Comment=Virtual Machine Manager
-Exec=/usr/bin/gnome-terminal -- /usr/local/bin/libvirttui
+Exec=ptyxis -- libvirttui
 Terminal=false
 Type=Application
 Icon=/usr/share/icons/libvirttui.png
 StartupNotify=true
-Categories=System;Utility;
+Categories=System;
