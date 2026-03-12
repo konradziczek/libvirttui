@@ -8,8 +8,6 @@ dnf install git g++ cargo libvirt-devel libcap-ng-devel libseccomp-devel python3
 
 dnf install libX11 libX11-devel pixman pixman-devel libjpeg-turbo-devel fltk fltk-devel pam-devel libXfixes libXfixes-devel
 
-snap install tigervnc
-
 git -C /opt clone https://github.com/konradziczek/libvirttui.git
 
 python3.12 -m venv /opt/libvirttui/venv
