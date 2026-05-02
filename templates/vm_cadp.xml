@@ -50,7 +50,7 @@
     $TEMPLATE_VM_MOUNTS$
 
     <interface type='network'>
-      <mac address='52:54:00:7a:5b:01'/>
+      <mac address='52:54:00:f0:13:7d'/>
       <source network='default'/>
       <model type='virtio'/>
     </interface>
