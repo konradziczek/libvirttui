@@ -151,6 +151,9 @@ chmod 4755 /usr/local/bin/libvirttui
 chmod 755 /usr/local/bin/virtiofsd
 chmod 755 /usr/local/bin/vncviewer
 
+semanage fcontext -a -t virt_content_t "/opt/virt_data(/.*)?"
+restorecon -R -v /opt/virt_data
+
 echo "OK"
 
 
